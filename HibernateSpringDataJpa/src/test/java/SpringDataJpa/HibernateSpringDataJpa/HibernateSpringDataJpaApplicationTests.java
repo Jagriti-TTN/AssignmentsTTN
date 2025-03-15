@@ -7,6 +7,10 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
@@ -22,9 +26,7 @@ class HibernateSpringDataJpaApplicationTests {
 		this.empRepo = empRepo;
 	}
 
-	@Test
-	void contextLoads() {
-	}
+
 	@Test
 	public void insertEmp(){
 //	emprepo.save(new Employee(1,"jags",18,"kanpur"));
@@ -81,15 +83,24 @@ class HibernateSpringDataJpaApplicationTests {
 			System.out.println(e.getName());
 		}
 
+		Pageable pageable=PageRequest.of(0,2, Sort.Direction.DESC,"age");
+		Page<Employee>page=empRepo.findAll(pageable);
+		List<Employee> results=page.getContent();
+		for(Employee e:results){
+			System.out.println(e.getName());
+		}
 //		Employee e1=empRepo.findById(1).get();
 //		System.out.println(e1.getName());
 //		e1.setName("gauri");
+
 //		empRepo.save(e1);
 
 //		List<Employee> empList =empRepo.findAllEmp();
 //		System.out.println(empList);
 
 //		empRepo.deleteById(1);  //to delete
+
+
 
 	}
 

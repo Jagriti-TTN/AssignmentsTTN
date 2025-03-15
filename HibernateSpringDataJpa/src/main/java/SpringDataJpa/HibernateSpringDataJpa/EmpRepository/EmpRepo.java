@@ -1,6 +1,8 @@
 package SpringDataJpa.HibernateSpringDataJpa.EmpRepository;
 
 import SpringDataJpa.HibernateSpringDataJpa.Entities.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -36,4 +38,9 @@ public interface EmpRepo extends JpaRepository<Employee,Integer>{
    @Modifying
    @Query("delete from Employee where id=:id")
     public void deleteEmpById(int id);
+
+
+
+
+    Page<Employee> findAll(Pageable pageable);
 }

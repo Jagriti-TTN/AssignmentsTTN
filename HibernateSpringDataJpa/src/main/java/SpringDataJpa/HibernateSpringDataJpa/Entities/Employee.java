@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
-public class Employee {
+public class
+Employee {
 
   private String name;
 
